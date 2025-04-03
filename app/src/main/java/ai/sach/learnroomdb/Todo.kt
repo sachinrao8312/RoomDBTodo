@@ -5,7 +5,7 @@ import androidx.annotation.RequiresApi
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.time.Instant
-import java.sql.Date
+import java.util.Date
 import kotlin.collections.listOf
 
 @Entity

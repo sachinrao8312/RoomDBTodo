@@ -13,8 +13,8 @@ interface TodoDAO {
     fun getAllTodo() : LiveData<List<Todo>>
 
     @Insert
-    fun addTodo(todo: Todo)
+    suspend fun addTodo(todo: Todo)
 
     @Query("DELETE FROM Todo WHERE id =:id")
-    fun delTodo(id:Int)
+    suspend fun delTodo(id:Int)
 }
