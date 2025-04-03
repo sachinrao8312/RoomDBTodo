@@ -109,10 +109,9 @@ fun TodoItemsUI(item: Todo, onDelete: () -> Unit ){
 
         }
 
-        IconButton(onClick = {
-            onDelete
-        }) {
-            Icon(painterResource(R.drawable.baseline_delete_24),
+        IconButton(onClick = { onDelete() }) {
+            Icon(
+                painter = painterResource(R.drawable.baseline_delete_24),
                 contentDescription = "Delete Button",
             )
         }

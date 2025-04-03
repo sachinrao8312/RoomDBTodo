@@ -4,24 +4,29 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import java.time.Instant
+import java.util.Date
 
 class TodoViewModel {
-    private  var _todoList = MutableLiveData<List<Todo>>()
-    val todoList: LiveData<List<Todo>> = _todoList
 
-    fun getAllTodo(){
-        _todoList.value = TodoManager.getAllTodo().reversed()
-    }
+    val todoDao = MainApp.todoDatabase.getTodoDao()
+
+    val todoList: LiveData<List<Todo>> = todoDao.getAllTodo()
+
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun addTodo(title:String){
-        TodoManager.addTodo(title)
-        getAllTodo()
+        todoDao.addTodo(Todo(,title,
+            createdTime = Date.from(Instant.now()))
+
+        )
+        todoDao.getAllTodo()
     }
 
     fun delTodo(id:Int){
-        TodoManager.delTodo(id)
-        getAllTodo()
+        todoDao.delTodo(id)
+        todoDao.getAllTodo()
+
     }
 
 }
